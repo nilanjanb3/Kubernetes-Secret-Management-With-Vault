@@ -8,7 +8,7 @@ ui            = true
 # that Vault binds to for its HTTP (API) and HTTPS (Cluster) servers,
 # respectively. The default ports are 8200 and 8201, respectively.
 cluster_addr  = "https://127.0.0.1:8201"
-api_addr      = "https://127.0.0.1:8200"
+api_addr      = "http://127.0.0.1:8200"
 
 # The `disable_mlock` block configures Vault to not use the `mlock(2)`
 # system call to lock memory. This is usually disabled in production
@@ -25,22 +25,22 @@ storage "raft" {
   # The `node_id` block configures the unique identifier for the raft
   # node. This is required for Vault to properly communicate with the
   # raft cluster.
-  node_id = "1"
+  node_id = "node1"
 }
 
 # The `listener` block configures the listener for Vault. This is
 # the address that Vault will bind to for incoming requests.
 listener "tcp" {
   # The `address` block configures the address that Vault binds to.
-  address       = "127.0.0.1:8200"
+  address       = "0.0.0.0:8200"
 
   # The `tls_cert_file` and `tls_key_file` blocks configure the
   # TLS certificate and key, respectively, for the listener. These
   # should point to the full-chain certificate and private key,
   # respectively.
-  tls_disable = "false"
-  tls_cert_file = "/path/to/full-chain.pem"
-  tls_key_file  = "/path/to/private-key.pem"
+  tls_disable = "true"
+  # tls_cert_file = "/path/to/full-chain.pem"
+  # tls_key_file  = "/path/to/private-key.pem"
 }
 
 # The `telemetry` block configures the telemetry options for Vault.

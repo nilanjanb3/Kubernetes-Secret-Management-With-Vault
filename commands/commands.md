@@ -142,3 +142,12 @@ vault token create
 # Log in with the token.
 vault login
 
+# Start the Vault server with the configuration file at config.hcl.
+vault server -config=./config.hcl
+
+# Set the address environment variable to the address of the Vault server.
+export VAULT_ADDR='http://127.0.0.1:8200'
+
+# Initialize the Vault server with the Shamir's Secret Sharing algorithm.
+vault operator init
+```
